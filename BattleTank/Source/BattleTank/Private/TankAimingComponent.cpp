@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "BattleTank.h"
 #include "Engine/World.h"
+#include "TankTurret.h"
 #include "GameFramework/Actor.h"
 
 
@@ -24,8 +25,15 @@ void UTankAimingComponent::BeginPlay() {
 }
 
 void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet) {
+	if (!BarrelToSet) { return; }
 	Barrel = BarrelToSet;
 }
+
+void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet) {
+	if (!TurretToSet) { return; }
+	Turret = TurretToSet;
+}
+
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 
@@ -67,9 +75,6 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 	auto AimAsRotator = AimDirection.Rotation();
 	auto DeltaRotator = AimAsRotator - BarrelRotator;
 	
-			// Move the barrel the right amount this frame
-			// Given a max elevation speed, and the frame time
-
 	Barrel->Elevate(DeltaRotator.Pitch);
 		
 }
