@@ -4,6 +4,7 @@
 #include "Public/TankBarrel.h"
 #include "Kismet/GameplayStatics.h"
 #include "BattleTank.h"
+#include "Engine/World.h"
 #include "GameFramework/Actor.h"
 
 
@@ -50,7 +51,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed) {
 		{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		MoveBarrelTowards(AimDirection);
-		}
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f, aim solution found"), Time);
+	}
+	else {
+		auto Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f, No aim solve found"), Time);
+	}
 }
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
@@ -63,7 +70,7 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 			// Move the barrel the right amount this frame
 			// Given a max elevation speed, and the frame time
 
-	Barrel->Elevate(5);
+	Barrel->Elevate(DeltaRotator.Pitch);
 		
 }
 
