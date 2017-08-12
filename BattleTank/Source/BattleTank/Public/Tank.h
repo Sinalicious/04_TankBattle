@@ -48,5 +48,9 @@ private:
 
 	UTankBarrel* Barrel = nullptr; // Local barrel reference for spawning projectile
 	
+	UPROPERTY(EditAnywhere, Category = Firing)
+	float ReloadTimeInSeconds = 2;
+
+	double LastFireTime = 0;
 	
 };
