@@ -6,6 +6,7 @@
 #include "BattleTank.h"
 #include "Engine/World.h"
 #include "TankTurret.h"
+#include "Projectile.h"
 #include "GameFramework/Actor.h"
 
 
@@ -18,10 +19,6 @@ UTankAimingComponent::UTankAimingComponent()
 	PrimaryComponentTick.bCanEverTick = false;
 
 	// ...
-}
-
-void UTankAimingComponent::BeginPlay() {
-	Super::BeginPlay();
 }
 
 void UTankAimingComponent::Initialiase(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet) {
@@ -70,3 +67,20 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
 		
 }
 
+void UTankAimingComponent::Fire() {
+	if (!ensure(Barrel && ProjectileBlueprint)) { return; }
+
+	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
+	if (isReloaded) {
+		// Spawn a projectile at the socketlocation on the barrel
+		auto Projectile = GetWorld()->SpawnActor<AProjectile>(
+			ProjectileBlueprint,
+			Barrel->GetSocketLocation(FName("Projectile")),
+			Barrel->GetSocketRotation(FName("Projectile"))
+			);
+
+		Projectile->LaunchProjectile(LaunchSpeed);
+		LastFireTime = FPlatformTime::Seconds();
+
+	}
+}
