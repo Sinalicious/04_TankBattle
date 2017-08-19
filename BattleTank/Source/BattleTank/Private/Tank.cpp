@@ -22,6 +22,16 @@ void ATank::DecreaseHealth()
 	}
 }
 
+int32 ATank::GetCurrentHealth() const
+{
+	return CurrentHealth;
+}
+
+int32 ATank::GetStartingealth() const
+{
+	return StartingHealth;
+}
+
 // Sets default values
 ATank::ATank()
 {

@@ -40,10 +40,31 @@ void AHPPickup::Tick(float DeltaTime)
 
 }
 
-void AHPPickup::OnPlayerEnterPickupBox(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyInted, bool bFromSweep, const FHitResult & SweepResult)
+void AHPPickup::OnPlayerEnterPickupBox(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyInted, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("pickup touched"));
-	Destroy();
+	if (CanBePicked(Cast<ATank>(OtherActor))) {
+		UE_LOG(LogTemp, Warning, TEXT("pickup touched"));
+		IncreaseHealth(Cast<ATank>(OtherActor));
+		Destroy();
+	}
 }
 
+void AHPPickup::IncreaseHealth(ATank * Tank)
+{
+	Tank->IncreaseHealth();
+}
+
+bool AHPPickup::CanBePicked(ATank* Tank) const {
+
+	int32 CurrentHP = Tank->GetCurrentHealth();
+	int32 StartingHP = Tank->GetStartingealth();
+	UE_LOG(LogTemp, Warning, TEXT("Currenthp: %i / StartingHP: %i"),CurrentHP, StartingHP);
+	if (CurrentHP >= StartingHP) {
+		return false;
+	}
+	else {
+		return true;
+	}
+	
+}
 

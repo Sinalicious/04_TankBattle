@@ -30,6 +30,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	void DecreaseHealth();
 
+	int32 GetCurrentHealth() const;
+
+	int32 GetStartingealth() const;
+
 private:
 	ATank();
 

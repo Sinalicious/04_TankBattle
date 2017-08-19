@@ -34,4 +34,8 @@ public:
 	
 	// UFUNCTION(BlueprintCallable, Category = "Health")
 	// void IncreaseHealth();
+
+	void IncreaseHealth(class ATank* Tank);
+
+	bool CanBePicked(ATank* Tank) const;
 };
