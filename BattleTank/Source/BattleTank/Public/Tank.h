@@ -21,6 +21,7 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Health")
 	float GetHealthPercent() const;
 
+	UPROPERTY(BlueprintAssignable)
 	FTankDelegate OnDeath;
 
 private:

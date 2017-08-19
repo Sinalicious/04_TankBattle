@@ -18,7 +18,7 @@ void ATankAiController::Tick(float DeltaTime) {
 	auto PlayerTank = GetWorld()->GetFirstPlayerController()->GetPawn();
 	auto ControlledTank = GetPawn();
 
-	if (!ensure(PlayerTank) && (ControlledTank)) { return; }
+	if (!ensure(PlayerTank && ControlledTank)) { return; }
 		
 		MoveToActor(PlayerTank, AcceptanceRadius); //TODO check readius is in cm
 

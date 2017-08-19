@@ -27,7 +27,6 @@ void ATankPlayerController::SetPawn(APawn* InPawn)
 
 		// Subscribe our local method to the deaths event
 		PosessedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnTankDeath);
-
 	}
 }
 
