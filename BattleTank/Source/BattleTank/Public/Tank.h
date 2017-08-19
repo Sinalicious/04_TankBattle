@@ -40,4 +40,5 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
 	int32 CurrentHealth;
+
 };
