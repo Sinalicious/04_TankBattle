@@ -24,14 +24,20 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FTankDelegate OnDeath;
 
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void IncreaseHealth();
+
+	UFUNCTION(BlueprintCallable, Category = "Health")
+	void DecreaseHealth();
+
 private:
 	ATank();
 
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Setup")
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
 	int32 StartingHealth = 100;
 
-	UPROPERTY(VisibleAnywhere, Category = "Health")
+	UPROPERTY(EditDefaultsOnly, Category = "Health")
 	int32 CurrentHealth;
 };
