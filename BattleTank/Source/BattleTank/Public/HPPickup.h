@@ -38,4 +38,8 @@ public:
 	void IncreaseHealth(class ATank* Tank);
 
 	bool CanBePicked(ATank* Tank) const;
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "HealthValue")
+	int32 HealthValue = 20;
 };

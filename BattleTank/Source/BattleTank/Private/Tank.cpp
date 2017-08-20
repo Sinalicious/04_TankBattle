@@ -4,34 +4,6 @@
 #include "Math/UnrealMathUtility.h"
 #include "BattleTank.h"
 
-void ATank::IncreaseHealth()
-{
-	if (CurrentHealth == StartingHealth) { return; }
-	else {
-		// int32 HealthPack = 20;
-		CurrentHealth = CurrentHealth + 20;
-	}
-}
-
-void ATank::DecreaseHealth()
-{
-	if (CurrentHealth <= 20) { return; }
-	else {
-		// int32 HealthPack = 20;
-		CurrentHealth = CurrentHealth - 20;
-	}
-}
-
-int32 ATank::GetCurrentHealth() const
-{
-	return CurrentHealth;
-}
-
-int32 ATank::GetStartingealth() const
-{
-	return StartingHealth;
-}
-
 // Sets default values
 ATank::ATank()
 {
@@ -62,3 +34,34 @@ float ATank::GetHealthPercent() const
 	return (float)CurrentHealth / (float)StartingHealth;
 }
 
+// used for testing with key bindings
+void ATank::IncreaseHealth()
+{
+	if (CurrentHealth == StartingHealth) { return; }
+	else {
+		CurrentHealth = CurrentHealth + 20;
+	}
+}
+// used for testing with key bindings
+void ATank::DecreaseHealth()
+{
+	if (CurrentHealth <= 20) { return; }
+	else {
+		CurrentHealth = CurrentHealth - 20;
+	}
+}
+
+int32 ATank::GetCurrentHealth() const
+{
+	return CurrentHealth;
+}
+
+int32 ATank::GetStartingealth() const
+{
+	return StartingHealth;
+}
+
+void ATank::PickupHealth(int32 HealthValue) 
+{
+	CurrentHealth = CurrentHealth + HealthValue;
+}

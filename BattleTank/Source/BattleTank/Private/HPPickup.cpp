@@ -30,28 +30,29 @@ AHPPickup::AHPPickup()
 void AHPPickup::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
 void AHPPickup::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void AHPPickup::OnPlayerEnterPickupBox(UPrimitiveComponent * OverlappedComp, AActor * OtherActor, UPrimitiveComponent * OtherComp, int32 OtherBodyInted, bool bFromSweep, const FHitResult& SweepResult)
 {
-	if (CanBePicked(Cast<ATank>(OtherActor))) {
-		UE_LOG(LogTemp, Warning, TEXT("pickup touched"));
-		IncreaseHealth(Cast<ATank>(OtherActor));
-		Destroy();
+	// AActor* ActorThatHits = OtherActor;
+	if (ATank* ActorThatHits = dynamic_cast<ATank*>(OtherActor)) {
+		if (CanBePicked(ActorThatHits)) {
+			UE_LOG(LogTemp, Warning, TEXT("pickup touched"));
+			IncreaseHealth(ActorThatHits);
+			Destroy();
+		}
 	}
 }
 
 void AHPPickup::IncreaseHealth(ATank * Tank)
 {
-	Tank->IncreaseHealth();
+	Tank->PickupHealth(HealthValue);
 }
 
 bool AHPPickup::CanBePicked(ATank* Tank) const {
