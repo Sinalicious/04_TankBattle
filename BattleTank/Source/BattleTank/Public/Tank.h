@@ -38,15 +38,15 @@ public:
 
 	void PickupHealth(int32 HealthValue);
 
+	UPROPERTY(EditAnywhere, Category = "Health")
+	int32 StartingHealth = 100;
+
 private:
 	ATank();
 
 	virtual void BeginPlay() override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Health")
-	int32 StartingHealth = 100;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Health")
 	int32 CurrentHealth;
-
+	
 };
