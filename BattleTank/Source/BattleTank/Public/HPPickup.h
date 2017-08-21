@@ -39,7 +39,7 @@ public:
 
 	bool CanBePicked(ATank* Tank) const;
 
-private:
-	UPROPERTY(EditDefaultsOnly, Category = "HealthValue")
+	UPROPERTY(EditAnywhere, Category = "HealthValue")
 	int32 HealthValue = 20;
+	
 };

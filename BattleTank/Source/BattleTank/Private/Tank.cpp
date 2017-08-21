@@ -51,16 +51,6 @@ void ATank::DecreaseHealth()
 	}
 }
 
-int32 ATank::GetCurrentHealth() const
-{
-	return CurrentHealth;
-}
-
-int32 ATank::GetStartingealth() const
-{
-	return StartingHealth;
-}
-
 void ATank::PickupHealth(int32 HealthValue) 
 {
 	CurrentHealth = CurrentHealth + HealthValue;

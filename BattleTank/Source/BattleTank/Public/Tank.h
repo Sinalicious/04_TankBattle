@@ -30,23 +30,16 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Health")
 	void DecreaseHealth();
 
-	UFUNCTION(BlueprintCallable, Category = "Health")
-	int32 GetCurrentHealth() const;
-
-	UFUNCTION(BlueprintCallable, Category = "Health")
-	int32 GetStartingealth() const;
-
 	void PickupHealth(int32 HealthValue);
 
 	UPROPERTY(EditAnywhere, Category = "Health")
 	int32 StartingHealth = 100;
 
+	UPROPERTY(EditAnywhere, Category = "Health")
+	int32 CurrentHealth = 0;
+
 private:
 	ATank();
 
 	virtual void BeginPlay() override;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Health")
-	int32 CurrentHealth;
-	
 };
