@@ -53,5 +53,12 @@ void ATank::DecreaseHealth()
 
 void ATank::PickupHealth(int32 HealthValue) 
 {
-	CurrentHealth = CurrentHealth + HealthValue;
+	if (HealthValue != 0) {
+		if (CurrentHealth < StartingHealth) {
+			CurrentHealth += HealthValue;
+			if (CurrentHealth > StartingHealth) {
+				CurrentHealth = StartingHealth;
+			}
+		}
+	}
 }

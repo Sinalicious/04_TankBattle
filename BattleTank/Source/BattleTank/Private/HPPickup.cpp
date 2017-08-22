@@ -52,10 +52,10 @@ void AHPPickup::OnPlayerEnterPickupBox(UPrimitiveComponent * OverlappedComp, AAc
 
 void AHPPickup::IncreaseHealth(ATank * Tank)
 {
-	int32 HealthMissing = (Tank->StartingHealth) - (Tank->CurrentHealth);
-	int32 ValueHealed = FMath::Clamp(HealthValue, 1, HealthMissing);
+	// int32 HealthMissing = (Tank->StartingHealth) - (Tank->CurrentHealth);
+	// int32 ValueHealed = FMath::Clamp(HealthValue, 1, HealthMissing);
 
-	Tank->PickupHealth(ValueHealed);
+	Tank->PickupHealth(HealthValue);
 }
 
 bool AHPPickup::CanBePicked(ATank* Tank) const 
