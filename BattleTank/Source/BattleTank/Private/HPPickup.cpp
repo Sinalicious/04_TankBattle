@@ -4,6 +4,8 @@
 #include "Components/ShapeComponent.h"
 #include "Components/BoxComponent.h"
 #include "Tank.h"
+#include "GameFramework/Actor.h"
+#include "TimerManager.h"
 #include "BattleTank.h"
 
 // Sets default values
@@ -45,8 +47,10 @@ void AHPPickup::OnPlayerEnterPickupBox(UPrimitiveComponent * OverlappedComp, AAc
 		if (CanBePicked(ActorThatHits)) {
 			UE_LOG(LogTemp, Warning, TEXT("pickup touched"));
 			IncreaseHealth(ActorThatHits);
-			Destroy();
-		}
+			this->SetActorHiddenInGame(true);
+			this->SetActorEnableCollision(false);
+			GetWorldTimerManager().SetTimer(UnusedHandle, this, &AHPPickup::PickedDelay, SpawnDelay, false);
+			}
 	}
 }
 
@@ -67,5 +71,11 @@ bool AHPPickup::CanBePicked(ATank* Tank) const
 	else {
 		return true;
 	}
+}
+
+void AHPPickup::PickedDelay()
+{
+	this->SetActorHiddenInGame(false);
+	this->SetActorEnableCollision(true);
 }
 

@@ -41,5 +41,14 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "HealthValue")
 	int32 HealthValue = 20;
-	
+
+	void PickedDelay();
+
+	UPROPERTY(EditAnywhere, Category = "Spawn")
+	int32 SpawnDelay = 2;
+
+protected:
+	FTimerHandle UnusedHandle;
+
+	bool bIsActive;
 };
