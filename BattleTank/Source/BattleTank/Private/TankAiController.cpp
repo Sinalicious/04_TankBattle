@@ -10,6 +10,7 @@
 
 void ATankAiController::BeginPlay() {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("Beginplay called from ai controller"));
 }
 
 void ATankAiController::Tick(float DeltaTime) {
@@ -49,9 +50,3 @@ void ATankAiController::OnTankDeath()
 	if (!GetPawn()) { return; }
 	GetPawn()->DetachFromControllerPendingDestroy();
 }
-
-
-
-
-
-
